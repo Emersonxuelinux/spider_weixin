@@ -19,11 +19,13 @@ for (name, fund_id) in ids.items():
     value = spider(url)
     sign = value[0]
     value_num = value[1:-1]
-
+    name = name.decode('utf-8')
     if(sign == '-' and float(value_num)>2.5):
-        itchat.send('buy %s' % fund_id, 'filehelper')
+        content = u'%s跌幅很大，可以补仓'
+        itchat.send(content % name, 'filehelper')
     else:
-        itchat.send('%s do not buy' % fund_id, 'filehelper')
+        content = u'%s 不需要补仓'
+        itchat.send(content % name, 'filehelper')
 
 
 
